@@ -1,4 +1,4 @@
-import { html, css, LitElement } from 'lit';
+import { LitElement } from 'lit';
 import { BGADPRequestGet } from './BGADPRequestGet';
 
 export class MarketplaceDm extends LitElement {
@@ -11,9 +11,6 @@ export class MarketplaceDm extends LitElement {
     super();
     this.path = 'sites/MLM';
     this.categoriesResponse = [];
-    this.addEventListener("success-response", ({detail}) => {
-      this.categoriesResponse = detail
-    })
   }
 
   async executeRequest(){
@@ -25,22 +22,10 @@ export class MarketplaceDm extends LitElement {
       }
     }
 
-    // Destructurar a categories
-    // Emitir un evento y enviar el array de categories
     mapInformation({categories}){
       this._customEvent("success-response", categories)
     }
 
-    // Va a listar en un html cada item
-    get _buildListItems() {
-      return html`
-      ${this.categoriesResponse.map(({name}) => html`
-      <p>${name}</p>
-          `)}
-      `
-    }
-
-    // Emisión de eventos
     _customEvent(eventName, detail) {
       return this.dispatchEvent(new CustomEvent(eventName, {
         bubbles: true,
@@ -51,9 +36,4 @@ export class MarketplaceDm extends LitElement {
 
     // construir template repasar destructurado, asincronismo, 
     // ejercicio para crear una calculadora con JS
-    render() {
-      return html`
-      ${this._buildListItems}
-      `;
-    }
 }

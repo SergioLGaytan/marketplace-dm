@@ -13,16 +13,26 @@
 <body>
   <marketplace-dm></marketplace-dm>
   <button>Ejecutar</button>
+  <div></div>
 
   <script type="module">
     const el = document.querySelector('marketplace-dm');
     const elle = document.querySelector('button');
+    const container = document.querySelector('div');
     listener();
 
     function listener(){
       elle.addEventListener("click", () => {
        el.executeRequest();
       })
+
+      el.addEventListener("success-response", ({detail}) => {
+        detail.map(({name}) => {
+          var p = document.createElement("p");
+          p.textContent = name;
+          container.appendChild(p);
+        })
+    })
     };
   </script>
 
