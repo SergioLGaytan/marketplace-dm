@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <script type="module" src="./demo.js"></script>
+  <style>
+    body {
+      background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+  <marketplace-dm></marketplace-dm>
+  <button>Ejecutar</button>
+
+  <script type="module">
+    const el = document.querySelector('marketplace-dm');
+    const elle = document.querySelector('button');
+    listener();
+
+    function listener(){
+      elle.addEventListener("click", () => {
+       el.executeRequest();
+      })
+    };
+  </script>
+
+</body>
+</html>
